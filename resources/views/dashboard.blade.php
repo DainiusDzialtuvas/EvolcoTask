@@ -1,3 +1,7 @@
+<script type="text/javascript"> 
+        var token = "<?php if (isset($token)) echo $token; ?>";
+        <?php if (isset($token)) ?> localStorage.setItem("token", token)</script>
+<html lang="en">
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -15,3 +19,4 @@
         </div>
     </div>
 </x-app-layout>
+</html>

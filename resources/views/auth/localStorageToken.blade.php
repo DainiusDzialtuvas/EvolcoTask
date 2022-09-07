@@ -1,0 +1,1 @@
+<script> localStorage.setItem("lastname", "Smith")</script>

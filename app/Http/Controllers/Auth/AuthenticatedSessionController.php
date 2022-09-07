@@ -7,6 +7,7 @@ use App\Http\Requests\Auth\LoginRequest;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -29,10 +30,12 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request)
     {
         $request->authenticate();
-
+        $user = User::where('name', $request->name)->first();
         $request->session()->regenerate();
-
-        return redirect()->intended(RouteServiceProvider::HOME);
+        $token = $user->createToken('Laravel Password Grant Client')->accessToken;
+        $response['token'] = $token;
+        return view('dashboard')->with('token', $token);
+        //return redirect()->route(RouteServiceProvider::HOME);
     }
 
     /**
