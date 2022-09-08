@@ -8,7 +8,15 @@
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
-
+    <style>
+.button {
+  background-color: blue;
+  color: white;
+  border: 2px solid black;
+  margin: 20px;
+  padding: 20px;
+}
+</style>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -16,6 +24,12 @@
                     You're logged in!
                 </div>
             </div>
+            <td><form action="/api/random-tweet" method="GET">
+            @csrf
+                <button class="btn btn-primary button" type="submit">
+                   Get PDF of random tweet &rarr;
+                </button>
+            </form></td>
         </div>
     </div>
 </x-app-layout>
